@@ -1,0 +1,59 @@
+﻿@model FarmerCropMarketing.Models.Class.MSPCropsDetail
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>MSPCropsDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Crops_name" class="control-label"></label>
+                <input asp-for="Crops_name" class="form-control" />
+                <span asp-validation-for="Crops_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crops_price" class="control-label"></label>
+                <input asp-for="Crops_price" class="form-control" />
+                <span asp-validation-for="Crops_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crops_description" class="control-label"></label>
+                <textarea asp-for="Crops_description" class="form-control"></textarea>
+                <span asp-validation-for="Crops_description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crops_image" class="control-label"></label>
+                <input asp-for="Crops_image" class="form-control" />
+                <span asp-validation-for="Crops_image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crop_Buying_Staring_Date" class="control-label"></label>
+                <input asp-for="Crop_Buying_Staring_Date" class="form-control" />
+                <span asp-validation-for="Crop_Buying_Staring_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crop_Buying_End_Date" class="control-label"></label>
+                <input asp-for="Crop_Buying_End_Date" class="form-control" />
+                <span asp-validation-for="Crop_Buying_End_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

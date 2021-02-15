@@ -1,0 +1,13 @@
+﻿@model List<FarmerCropMarketing.Models.ViewModel.UserRoleViewModel>
+<form>
+    <div class="card">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+        <div class="card-header">
+           <label asp-for="@Model[i].Email"></label>
+            @*<select asp-for="@Model[i].UserId" asp-items="@(new SelectList(Model[i].Role,"RoleId","RoleName","SelecteddRole"))" ></select>*@
+        </div>
+        }
+        
+    </div>
+</form>

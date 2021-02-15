@@ -1,0 +1,32 @@
+﻿@*@(async () => await deleteConfirm(@myShoppings))*@
+@model List<FarmerCropMarketing.Models.ViewModel.UserRoleViewModel>
+<h1>List Of All User</h1>
+@for(int i=0;i<Model.Count;i++)
+{
+<div class="card">
+    <div class=" card-header">
+        @Model[i].Email<br>
+        @Model[i].RoleId<br>
+        @*<select asp-for="@Model[i].RoleId" asp-items="@(new SelectList(Model[i].Role,,))"></select>*@
+    <select name="userRole" id="@Model[i].UserId">
+        @foreach (var item in Model[i].Role)
+        {
+            if (Model[i].RoleId == item.Name)
+            {
+                <option value="@item.Id" selected="selected">@item.Name</option>
+            }
+            else
+            { 
+                <option value="@item.Id">@item.Name</option>
+            }
+        }
+    </select>
+    </div>
+    <div class=" card-body">
+        <button class="btn btn-primary" id="@i" name="save_change">Save Change</button>
+    </div>
+</div>
+}
+
+
+
