@@ -26,8 +26,15 @@ using FarmerCropMarketing.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3a7c03839e75c39d910b972e0ba87bf81f8de387", @"/Views/Admin/ListOfAllUser.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"99ad618e7b61f6cfca243cddaf8d8f87c9ad74c6", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42d94237e918fd8f61a02fe5c558a70efcbe393c", @"/Views/_ViewImports.cshtml")]
     public class Views_Admin_ListOfAllUser : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<FarmerCropMarketing.Models.ViewModel.UserRoleViewModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("selected", new global::Microsoft.AspNetCore.Html.HtmlString("selected"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -103,7 +110,7 @@ WriteAttributeValue("", 434, Model[i].UserId, 434, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a7c03839e75c39d910b972e0ba87bf81f8de3875159", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a7c03839e75c39d910b972e0ba87bf81f8de3875365", async() => {
 #nullable restore
 #line 16 "E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\Views\Admin\ListOfAllUser.cshtml"
                                                         Write(item.Name);
@@ -145,7 +152,7 @@ WriteAttributeValue("", 434, Model[i].UserId, 434, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a7c03839e75c39d910b972e0ba87bf81f8de3877343", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3a7c03839e75c39d910b972e0ba87bf81f8de3877549", async() => {
 #nullable restore
 #line 20 "E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\Views\Admin\ListOfAllUser.cshtml"
                                     Write(item.Name);

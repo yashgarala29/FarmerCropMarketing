@@ -1,9 +1,7 @@
-﻿@model IEnumerable<FarmerCropMarketing.Models.Class.MSPCropsDetail>
-
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model  IEnumerable<FarmerCropMarketing.Models.viewmodel.editmspcrop >
+@{ ViewData["Title"]="Index" ;
+  Layout="~/Views/Shared/_Layout.cshtml" ;
+ }
 
 <h1>Index</h1>
 
@@ -35,32 +33,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crops_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crops_price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crops_description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crops_image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crop_Buying_Staring_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crop_Buying_End_Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MSPCrops_id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MSPCrops_id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MSPCrops_id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crops_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crops_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crops_description)
+                </td>
+                <td>
+                    @{
+                        var imagepath = "../CropImage/" + (item.ExistringImagePath);
+                    }
+                    <div class="form-group row col-4 offset-4">
+                        <img src="@imagepath" class="img-thumbnail">
+                    </div>
+                    @*@imagepath*@
+                    @*@Html.DisplayFor(modelItem => item.Crops_image)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crop_Buying_Staring_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crop_Buying_End_Date)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MSPCrops_id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MSPCrops_id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MSPCrops_id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

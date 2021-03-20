@@ -93,28 +93,23 @@ namespace FarmerCropMarketing.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Farmers_address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Crops_quantity")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Farmers_email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Farmers_mobile_no")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Farmers_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Farmers_id")
+                        .HasColumnType("int");
 
                     b.Property<int>("MSPCrops_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Seller_id")
                         .HasColumnType("int");
 
                     b.HasKey("MSPSell_id");
 
                     b.HasIndex("MSPCrops_id");
+
+                    b.HasIndex("Seller_id");
 
                     b.ToTable("MSPSellCrops");
                 });
@@ -149,6 +144,12 @@ namespace FarmerCropMarketing.Migrations
 
                     b.Property<int?>("Seller_id")
                         .HasColumnType("int");
+
+                    b.Property<bool>("buyOrsell")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("itComplited")
+                        .HasColumnType("bit");
 
                     b.HasKey("Crops_id");
 
@@ -208,6 +209,9 @@ namespace FarmerCropMarketing.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("order_status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ordertype")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("seller_id")
@@ -447,6 +451,12 @@ namespace FarmerCropMarketing.Migrations
                         .HasForeignKey("MSPCrops_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("FarmerCropMarketing.Models.Farmers", "Farmers")
+                        .WithMany()
+                        .HasForeignKey("Seller_id");
+
+                    b.Navigation("Farmers");
 
                     b.Navigation("MSPCropsDetail");
                 });

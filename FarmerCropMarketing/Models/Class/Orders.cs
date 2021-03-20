@@ -30,7 +30,7 @@ namespace FarmerCropMarketing.Models
         public string order_status { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime delivery_date { get; set; }
-
+        public string ordertype { get; set; }
         //public ICollection<item_detail> customer_oreder { get; set; }
 
         [Required]

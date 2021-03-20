@@ -26,8 +26,15 @@ using FarmerCropMarketing.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a0977f7b0f1317c8a1636442aee6ae09b5425f36", @"/Views/Role/UserRole.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"99ad618e7b61f6cfca243cddaf8d8f87c9ad74c6", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42d94237e918fd8f61a02fe5c558a70efcbe393c", @"/Views/_ViewImports.cshtml")]
     public class Views_Role_UserRole : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<FarmerCropMarketing.Models.ViewModel.UserRoleViewModel>>
     {
         #line hidden
@@ -56,7 +63,7 @@ using FarmerCropMarketing.Models;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0977f7b0f1317c8a1636442aee6ae09b5425f363416", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0977f7b0f1317c8a1636442aee6ae09b5425f363622", async() => {
                 WriteLiteral("\r\n    <div class=\"card\">\r\n");
 #nullable restore
 #line 4 "E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\Views\Role\UserRole.cshtml"
@@ -67,7 +74,7 @@ using FarmerCropMarketing.Models;
 #line hidden
 #nullable disable
                 WriteLiteral("        <div class=\"card-header\">\r\n           ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0977f7b0f1317c8a1636442aee6ae09b5425f364015", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a0977f7b0f1317c8a1636442aee6ae09b5425f364221", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>();

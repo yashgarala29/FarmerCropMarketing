@@ -7,22 +7,56 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FarmerCropMarketing.Models.Class;
 using FarmerCropMarketing.Models.Context;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using FarmerCropMarketing.Models.viewmodel;
+using System.IO;
 
 namespace FarmerCropMarketing.Controllers
 {
     public class MSPCropsDetailsController : Controller
     {
+        
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IWebHostEnvironment hostEnvironment;
         private readonly AppDbContext _context;
 
-        public MSPCropsDetailsController(AppDbContext context)
+        public MSPCropsDetailsController(UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            IWebHostEnvironment hostEnvironment,
+            AppDbContext context)
         {
-            _context = context;
-        }
 
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.roleManager = roleManager;
+            this.hostEnvironment = hostEnvironment;
+            this._context = context;
+        }
         // GET: MSPCropsDetails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MSPCropsDetails.ToListAsync());
+            var x =await _context.MSPCropsDetails.ToListAsync();
+            var allmspcrop = new List<editmspcrop>();
+            foreach(var y in x)
+                {
+                var crop = new editmspcrop
+                {
+                    Crops_description = y.Crops_description,
+                    ExistringImagePath = y.Crops_image,
+                    Crops_name = y.Crops_name,
+                    Crops_price = y.Crops_price,
+                    Crop_Buying_End_Date = y.Crop_Buying_End_Date,
+                    Crop_Buying_Staring_Date = y.Crop_Buying_Staring_Date,
+                    MSPCrops_id = y.MSPCrops_id,
+                    
+                };
+                allmspcrop.Add(crop);
+            }
+            return View(allmspcrop);
         }
 
         // GET: MSPCropsDetails/Details/5
@@ -54,15 +88,39 @@ namespace FarmerCropMarketing.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MSPCrops_id,Crops_name,Crops_price,Crops_description,Crops_image,Crop_Buying_Staring_Date,Crop_Buying_End_Date")] MSPCropsDetail mSPCropsDetail)
+        public async Task<IActionResult> Create(addmspcrop addmspcrop)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(mSPCropsDetail);
+                var seller_email = User.Identity.Name;
+
+                String uniqefileName = null;
+                if (addmspcrop.Crops_image != null)
+                {
+                    string uplodeFolder = Path.Combine(hostEnvironment.WebRootPath, "CropImage");
+                    uniqefileName = Guid.NewGuid().ToString() + "_" + addmspcrop.Crops_image.FileName;
+                    string filepath = Path.Combine(uplodeFolder, uniqefileName);
+                    addmspcrop.Crops_image.CopyTo(new FileStream(filepath, FileMode.Create));
+                }
+               var crop = new MSPCropsDetail
+                {
+                   Crops_image=uniqefileName,
+                   Crops_name=addmspcrop.Crops_name,
+                   Crops_description=addmspcrop.Crops_description,
+                   Crops_price=addmspcrop.Crops_price,
+                   Crop_Buying_End_Date=addmspcrop.Crop_Buying_End_Date,
+                   Crop_Buying_Staring_Date=addmspcrop.Crop_Buying_Staring_Date,
+                  
+
+                };
+                _context.MSPCropsDetails.Add(crop);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                ViewBag.mes = "Your Crop is Added ";
+                return View();
             }
-            return View(mSPCropsDetail);
+            return View(addmspcrop);
+
         }
 
         // GET: MSPCropsDetails/Edit/5
@@ -74,21 +132,32 @@ namespace FarmerCropMarketing.Controllers
             }
 
             var mSPCropsDetail = await _context.MSPCropsDetails.FindAsync(id);
+
             if (mSPCropsDetail == null)
             {
                 return NotFound();
             }
-            return View(mSPCropsDetail);
+            var crop = new editmspcrop
+            {
+                ExistringImagePath = mSPCropsDetail.Crops_image,
+                Crops_name = mSPCropsDetail.Crops_name,
+                Crops_description = mSPCropsDetail.Crops_description,
+                Crops_price = mSPCropsDetail.Crops_price,
+                Crop_Buying_End_Date = mSPCropsDetail.Crop_Buying_End_Date,
+                Crop_Buying_Staring_Date = mSPCropsDetail.Crop_Buying_Staring_Date,
+                MSPCrops_id=mSPCropsDetail.MSPCrops_id,
+
+            };
+            return View(crop);
         }
 
         // POST: MSPCropsDetails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MSPCrops_id,Crops_name,Crops_price,Crops_description,Crops_image,Crop_Buying_Staring_Date,Crop_Buying_End_Date")] MSPCropsDetail mSPCropsDetail)
+        public async Task<IActionResult> Edit(int id, editmspcrop editmspcrop)
         {
-            if (id != mSPCropsDetail.MSPCrops_id)
+            if (id != editmspcrop.MSPCrops_id)
             {
                 return NotFound();
             }
@@ -97,12 +166,29 @@ namespace FarmerCropMarketing.Controllers
             {
                 try
                 {
-                    _context.Update(mSPCropsDetail);
+                  
+                    var curentcrop =await _context.MSPCropsDetails.Where(x => x.MSPCrops_id == id).FirstOrDefaultAsync();
+                    curentcrop.Crops_description = editmspcrop.Crops_description;
+                    curentcrop.Crops_name = editmspcrop.Crops_name;
+                    curentcrop.Crops_price = editmspcrop.Crops_price;
+                    curentcrop.Crop_Buying_End_Date = editmspcrop.Crop_Buying_End_Date;
+                    curentcrop.Crop_Buying_Staring_Date = editmspcrop.Crop_Buying_Staring_Date;
+                    if (editmspcrop.Crops_image != null)
+                    {
+                        string filepath = Path.Combine(hostEnvironment.WebRootPath,
+                            "CropImage", editmspcrop.ExistringImagePath);
+                        System.IO.File.Delete(filepath);
+                        curentcrop.Crops_image = updateimage(editmspcrop);
+                    }
+
+
+
+                    _context.Update(curentcrop);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MSPCropsDetailExists(mSPCropsDetail.MSPCrops_id))
+                    if (!MSPCropsDetailExists(editmspcrop.MSPCrops_id))
                     {
                         return NotFound();
                     }
@@ -113,9 +199,21 @@ namespace FarmerCropMarketing.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(mSPCropsDetail);
+            return View(editmspcrop);
         }
+        public string updateimage(editmspcrop editmspcrop)
+        {
+            string uniqname = null;
+            if(editmspcrop.Crops_image!=null)
+            {
+                string uplodeFolder = Path.Combine(hostEnvironment.WebRootPath, "CropImage");
+                uniqname = Guid.NewGuid().ToString() + "_" + editmspcrop.Crops_image.FileName;
+                string filepath = Path.Combine(uplodeFolder, uniqname);
+                editmspcrop.Crops_image.CopyTo(new FileStream(filepath, FileMode.Create));
 
+            }
+            return uniqname;
+        }
         // GET: MSPCropsDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

@@ -135,16 +135,15 @@ namespace FarmerCropMarketing.Controllers
                 return NotFound();
             }
 
-            var cart = await _context.Cart
-                .Include(c => c.Crops)
-                .Include(c => c.Farmers)
-                .FirstOrDefaultAsync(m => m.Cart_id == id);
+            var cart = await _context.Cart.FindAsync(id);
             if (cart == null)
             {
                 return NotFound();
             }
-
-            return View(cart);
+            _context.Cart.Remove(cart);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("mycart","Farmers");
+            
         }
 
         // POST: Carts/Delete/5

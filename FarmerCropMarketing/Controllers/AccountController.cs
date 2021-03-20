@@ -1,4 +1,6 @@
 ﻿
+using FarmerCropMarketing.Models;
+using FarmerCropMarketing.Models.Context;
 using FarmerCropMarketing.Models.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,13 @@ namespace FarmerCropMarketing.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
+        private readonly AppDbContext context;
+
         public AccountController(UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, AppDbContext _context)
         {
             this.signInManager = signInManager;
+            context = _context;
             this.userManager = userManager;
         }
         [HttpGet]
@@ -32,10 +37,19 @@ namespace FarmerCropMarketing.Controllers
             {
                 var result = await signInManager.PasswordSignInAsync(
                     model.Email, model.Password,true, false);
-
+                
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    if(User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("HomePageAdmin", "Admin");
+                    }
+                    else if(User.IsInRole("Government"))
+                    {
+                        return RedirectToAction("homePageGovernment", "Government");
+                    }
+                   
+                    return RedirectToAction("HomepageFarmer", "Farmers");
                 }
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }
@@ -62,6 +76,17 @@ namespace FarmerCropMarketing.Controllers
                 if(result.Succeeded)
                 {
                     var s = userManager.Users.Where(a => a.Email == registerViewModel.Email).FirstOrDefault();
+                    var farms = new Farmers
+                    {
+                        Farmers_email = s.Email,
+                        Farmers_address="",
+                        Farmers_image="",
+                        Farmers_mobile_no="",
+                        Farmers_name="",
+                       
+                    };
+                    context.Farmers.Add(farms);
+                    await context.SaveChangesAsync();
                     identityResult = await userManager.AddToRoleAsync(s, "Farmer");
                     if (identityResult.Succeeded)
                         return RedirectToAction("index", "home");
@@ -179,9 +204,5 @@ namespace FarmerCropMarketing.Controllers
                 
         }
         
-
-
-
-
     }
 }

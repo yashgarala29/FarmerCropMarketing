@@ -1,8 +1,9 @@
-﻿@model FarmerCropMarketing.Models.Class.MSPCropsDetail
+﻿@model FarmerCropMarketing.Models.viewmodel.editmspcrop
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //var imagepath = "../CropImage/" + (Model.ExistringImagePath);
 }
 
 <h1>Edit</h1>
@@ -11,9 +12,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MSPCrops_id" />
+            <input type="hidden" asp-for="ExistringImagePath" />
+
             <div class="form-group">
                 <label asp-for="Crops_name" class="control-label"></label>
                 <input asp-for="Crops_name" class="form-control" />
@@ -30,8 +33,12 @@
                 <span asp-validation-for="Crops_description" class="text-danger"></span>
             </div>
             <div class="form-group">
+
                 <label asp-for="Crops_image" class="control-label"></label>
-                <input asp-for="Crops_image" class="form-control" />
+                <div class="custom-file">
+                    <input value="-1" asp-for="Crops_image" class="form-control custom-file-input" />
+                    <label class="custom-file-label">Product image</label>
+                </div>
                 <span asp-validation-for="Crops_image" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,6 +51,13 @@
                 <input asp-for="Crop_Buying_End_Date" class="form-control" />
                 <span asp-validation-for="Crop_Buying_End_Date" class="text-danger"></span>
             </div>
+            @{
+                var imagepath = "../../CropImage/" + (Model.ExistringImagePath);
+            }
+            <div class="form-group row col-4 offset-4">
+                <img src="@imagepath" class="img-thumbnail">
+            </div>
+            @*@imagepath*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -56,5 +70,14 @@
 </div>
 
 @section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var filename = $(this).val().split("\\").pop();
+                $(this).next(".custom-file-label").html(filename);
+            });
+
+        });
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

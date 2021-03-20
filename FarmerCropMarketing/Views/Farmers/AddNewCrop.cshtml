@@ -1,0 +1,64 @@
+﻿@model FarmerCropMarketing.Models.viewmodel.addnewCrop
+<h1>Add new Crop </h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="AddNewCrop">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="crop_name" class="control-label"></label>
+                <input asp-for="crop_name" class="form-control" />
+                <span asp-validation-for="crop_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="crop_price" class="control-label"></label>
+                <input asp-for="crop_price" class="form-control" />
+                <span asp-validation-for="crop_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="crop_quantity" class="control-label"></label>
+                <input asp-for="crop_quantity" class="form-control" />
+                <span asp-validation-for="crop_quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="crop_description" class="control-label"></label>
+                <textarea asp-for="crop_description" class="form-control"></textarea>
+                <span asp-validation-for="crop_description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="crop_image" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="crop_image" class="form-control custom-file-input" />
+                    <label class="custom-file-label">Product image</label>
+                </div>
+                <span asp-validation-for="crop_image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="youwanttosell" class="control-label"></label>
+                <input asp-for="youwanttosell" class="form-control" /><br>
+                <div style="font-size=11px;">If you want to buy this crop pleae don`t check this check box</div>
+                <span asp-validation-for="youwanttosell" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var filename = $(this).val().split("\\").pop();
+                $(this).next(".custom-file-label").html(filename);
+            });
+
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

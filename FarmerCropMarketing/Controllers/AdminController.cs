@@ -22,7 +22,10 @@ namespace FarmerCropMarketing.Controllers
             this.signInManager = signInManager;
             this.roleManager = roleManager;
         }
-
+        public IActionResult HomePageAdmin()
+        {
+            return View();
+        }
         [HttpGet]
         public async Task<IActionResult> ListOfAllUser()
         {

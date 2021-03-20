@@ -11,23 +11,13 @@ namespace FarmerCropMarketing.Models.Class
     {
         [Key]
         public int MSPSell_id { get; set; }
+        [Required]
+        [Display(Name = "quantity")]
+        public int Crops_quantity { get; set; }
 
-        [Required]
-        [Display(Name = "Name")]
-        public String Farmers_name { get; set; }
-        [Required]
-        [Display(Name = "Email Address")]
-        [EmailAddress(ErrorMessage = "please enter valid email ")]
-        public String Farmers_email { get; set; }
-
-        [Required]
-        [Display(Name = "Mobile number")]
-        [DataType(DataType.Text)]
-        public string Farmers_mobile_no { get; set; }
-        [Required]
-        [Display(Name = "Address")]
-        [DataType(DataType.MultilineText)]
-        public string Farmers_address { get; set; }
+        public int Farmers_id { get; set; }
+        [ForeignKey("Seller_id")]
+        public Farmers Farmers { get; set; }
 
         public int MSPCrops_id { get; set; }
         [ForeignKey("MSPCrops_id")]

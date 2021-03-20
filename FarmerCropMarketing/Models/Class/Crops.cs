@@ -28,7 +28,8 @@ namespace FarmerCropMarketing.Models
         [Required]
         [Display(Name = "Crops image")]
         public String Crops_image { get; set; }
-
+        public bool itComplited { get; set; }
+        public bool buyOrsell { get; set; }
         public int Farmers_id { get; set; }
         [ForeignKey("Seller_id")]
         public Farmers Farmers { get; set; }

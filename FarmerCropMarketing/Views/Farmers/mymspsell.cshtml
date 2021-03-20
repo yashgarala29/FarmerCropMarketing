@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FarmerCropMarketing.Models.Class.MSPSellCrops>
+@{ ViewData["Title"] = "My MSP Sell";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>MY MSP Sell</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MSPCropsDetail.Crops_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MSPCropsDetail.Crops_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Crops_quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MSPCropsDetail.Crops_description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MSPCropsDetail.Crops_image)
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MSPCropsDetail.Crops_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MSPCropsDetail.Crops_price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Crops_quantity)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.MSPCropsDetail.Crops_description)
+            </td>
+            <td>
+                @{
+                    var imagepath = "../CropImage/" + (item.MSPCropsDetail.Crops_image);
+                }
+
+                <img src="@imagepath" class="img-thumbnail">
+                
+                @*@imagepath*@
+                @*@Html.DisplayFor(modelItem => item.Crops_image)*@
+            </td>
+
+            
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,48 +1,191 @@
 ﻿<!DOCTYPE html>
+@inject SignInManager<IdentityUser> signinmanager
+@inject UserManager<IdentityUser> usemanager
+
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FarmerCropMarketing</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>@ViewData["Title"] - Leave_Management_System</title>
+
+    <link rel="stylesheet" href="~/css/DashBoard.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FarmerCropMarketing</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - FarmerCropMarketing - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <div id="wrapper">
+        <div class="overlay"></div>
+
+        <!-- Sidebar -->
+        <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation">
+            <div class="simplebar-content" style="padding: 0px;">
+                <a class="sidebar-brand" asp-controller="Home" asp-action="Index">
+                    <span class="align-middle">Farmer Crop Marketing</span>
+                </a>
+
+                <ul class="navbar-nav align-self-stretch">
+
+                    @if (signinmanager.IsSignedIn(User))
+                    {
+                @if (User.IsInRole("Admin"))
+                {
+                <li class="nav-link text-left">
+                    <a class="" asp-area="" asp-controller="Role" asp-action="ListOfAllUser">Manage User</a>
+                </li>
+                                    <li class="nav-link text-left">
+                                        <a class="" asp-area="" asp-controller="Role" asp-action="CreateRole">Manage Crope</a>
+                                    </li>
+}
+                                @if (User.IsInRole("Government"))
+                                {
+                <li class="nav-link text-left">
+                    <a class="nav-link text-left " asp-area="" asp-controller="MSPCropsDetails" asp-action="Create">Add Crop in MSP</a>
+                </li>
+                                    <li class="nav-link text-left">
+                                        <a class="" asp-area="" asp-controller="MSPCropsDetails" asp-action="">All MSP Crope</a>
+                                    </li>}
+                                                @if (User.IsInRole("Farmer"))
+                                                {
+                                <li class="nav-link text-left">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Farmers" asp-action="HomepageFarmer">Home</a>
+                                </li>
+                                                    <li class="nav-link text-left">
+                                                        <a class="" asp-area="" asp-controller="Farmers" asp-action="mybuyitem">My Buy  Crope</a>
+                                                    </li>
+                                                                        <li class="nav-link text-left">
+                                                                            <a class="" asp-area="" asp-controller="Farmers" asp-action="AddNewCrop">Crop Buy Or Sell</a>
+                                                                        </li>
+                                                                                            
+                                                                                                                <li class="nav-link text-left">
+                                                                                                                    <a class="" asp-area="" asp-controller="Farmers" asp-action="MyCart">My Cart</a>
+                                                                                                                </li>
+                                                                                                                                    <li class="nav-link text-left">
+                                                                                                                                        <a class="" asp-area="" asp-controller="Farmers" asp-action="sellinmsp">MSP Crop</a>
+                                                                                                                                    </li>
+                                                                                                                                                        <li class="nav-link text-left">
+                                                                                                                                                            <a class="" asp-area="" asp-controller="Farmers" asp-action="mysellitem"> My Sell item</a>
+                                                                                                                                                        </li>
+                                                                                                                                                        }}
+
+                </ul>
+                <ul class="navbar-nav  align-self-stretch">
+
+                    @if (signinmanager.IsSignedIn(User))
+                    {
+
+        <li class="nav-item">
+            <a class="nav-link text-left active" role="button" aria-haspopup="true" aria-expanded="false" asp-area="" asp-page="" title="Manage"> <i class="flaticon-bar-chart-1">@User.Identity.Name</i></a>
+
+        </li>
+
+                        <li class="nav-item">
+                            <form class="nav-link text-left " asp-controller="account" asp-action="Logout">
+                                <button type="submit" class="btn btn-block btn-dark">Logout</button>
+                            </form>
+                        </li>
+ }
+                    else
+                    {
+        <li class="">
+            <a class="nav-link text-left " role="button" aria-haspopup="true" aria-expanded="false" asp-controller="account" asp-action="login">Login</a>
+        </li>
+
+                        <li class="">
+                            <a class="nav-link text-left " role="button" aria-haspopup="true" aria-expanded="false" asp-controller="account" asp-action="register">Register</a>
+                        </li>
+}
+                </ul>
+
+
+            </div>
+
+
+        </nav>
+        <div id="page-content-wrapper">
+
+
+            <div id="content">
+
+                <div class="container-fluid p-0 px-lg-0 px-md-0">
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light my-navbar">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <div type="button" id="bar" class="nav-icon1 hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown  d-sm-none">
+                            </li>
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"> @User.Identity.Name</span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+
+                </div>
+                @RenderBody()
+
+
+
+
+
+
+                <footer class="footer fixed-bottom">
+                    <div class="container-fluid">
+                        <div class="row text-muted">
+                            <div class="col-6 text-left">
+                                <p class="mb-0">
+                                    <a href="index.html" class="text-muted"><strong>Farmer Crop Marketing</strong></a> &copy
+                                </p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <ul class="list-inline">
+
+                                    <li class="footer-item">
+                                        <a class="text-muted" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
         </div>
-    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+    <script>
+        $('#bar').click(function () {
+            $(this).toggleClass('open');
+            $('#page-content-wrapper ,#sidebar-wrapper').toggleClass('toggled');
+
+        });
+    </script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

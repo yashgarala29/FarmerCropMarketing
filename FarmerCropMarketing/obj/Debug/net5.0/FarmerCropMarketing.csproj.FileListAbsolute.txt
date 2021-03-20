@@ -199,3 +199,14 @@ E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\R
 E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\MSPCropsDetails\Details.cshtml.g.cs
 E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\MSPCropsDetails\Edit.cshtml.g.cs
 E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\MSPCropsDetails\Index.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\HomepageFarmer.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\AddNewCrop.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Shared\H_Layout.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Admin\HomePageAdmin.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Government\homePageGovernment.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\mybuyitem.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\mysellitem.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\MyCart.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\sellinmsp.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\SellCropInMSP.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\mymspsell.cshtml.g.cs

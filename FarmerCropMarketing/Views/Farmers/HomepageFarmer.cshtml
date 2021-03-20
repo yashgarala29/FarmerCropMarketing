@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FarmerCropMarketing.Models.Crops>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    var i = 0;
+}
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        var crop_image_path = "/CropImage/" + item.Crops_image;
+
+        @if (!item.itComplited)
+        {
+            <div style="display:inline-block">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@crop_image_path" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Crops_name)</h5>
+                        <p class="card-text"> @Html.DisplayNameFor(model => model.Crops_price) : @Html.DisplayFor(modelItem => item.Crops_price)</p>
+                        |
+                        <a asp-action="Details" asp-controller="Crops" asp-route-id="@item.Crops_id" class="btn btn-primary">Details</a> |
+                        @if (item.buyOrsell)
+                        {
+                            <a asp-action="Buy" asp-route-id="@item.Crops_id" class="btn btn-primary">Buy</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Sell" asp-route-id="@item.Crops_id" class="btn btn-success">Sell</a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            i++;
+        }
+    }
