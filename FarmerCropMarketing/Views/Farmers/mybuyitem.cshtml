@@ -7,17 +7,14 @@
 
 <h1>mybuyitem</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Farmers)
+                @Html.DisplayNameFor(model => model.Farmers.Farmers_address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Crops)
+                @Html.DisplayNameFor(model => model.Crops.Crops_description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.seller_id)
@@ -34,7 +31,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.total_pricer)
             </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
@@ -61,11 +58,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.total_pricer)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Orders_id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Orders_id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Orders_id">Delete</a>
-            </td>
+          
         </tr>
 }
     </tbody>

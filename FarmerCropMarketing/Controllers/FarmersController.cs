@@ -25,7 +25,32 @@ namespace FarmerCropMarketing.Controllers
             _context = context;
             this.hostEnvironment = hostEnvironment;
         }
-        
+        public async Task<IActionResult> placeorder()
+        {
+            var all_cart_carop = await _context.Cart.Include(x => x.Farmers).Include(x => x.Crops).Where(x => x.Farmers.Farmers_email == User.Identity.Name).ToListAsync();
+            foreach(var i in all_cart_carop)
+            {
+
+                var selleruser = await _context.Crops.Where(x => x.Crops_id == i.Crops_id).FirstOrDefaultAsync();
+                var newOrder = new Orders
+                {
+                    delivery_date = DateTime.Now,
+                    Crops_id = i.Crops_id,
+                    order_date = DateTime.Now,
+                    seller_id = i.Crops.Farmers_id,
+                    Farmers_id = i.Farmers_id,
+                    order_status = "success",
+                    total_pricer = i.Crops.Crops_price,
+                    ordertype = "Buy",
+                };
+                selleruser.itComplited = true;
+                //_context.Cart.Remove(i);
+                _context.Crops.Update(selleruser);
+                _context.Orders.Add(newOrder);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("mybuyitem", "Farmers");
+        }
         [Authorize(Roles = "Farmer")]
         public async Task<IActionResult> mymspsell()
         {
@@ -125,7 +150,13 @@ namespace FarmerCropMarketing.Controllers
         [Authorize(Roles = "Farmer")]
         public async Task<IActionResult> MyCart()
         {
-            var cart_crop = _context.Cart.Include(x => x.Farmers).Include(x => x.Crops).Where(x => x.Farmers.Farmers_email == User.Identity.Name);
+            var cart_crop = _context.Cart.Include(x => x.Farmers).Include(x => x.Crops).Where(x => x.Farmers.Farmers_email == User.Identity.Name && x.Crops.itComplited==false);
+            int price = 0;
+            foreach(var i in cart_crop)
+            {
+                price += i.Crops.Crops_price;
+            }
+            ViewBag.price = price;
             return View(cart_crop);
         }
 
