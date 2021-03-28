@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FarmerCropMarketing.Models.Crops>
+
+@{
+    ViewData["Title"] = "CropList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CropList</h1>
+
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    var i = 0;
+}
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        var crop_image_path = "/CropImage/" + item.Crops_image;
+
+        @if (!item.itComplited)
+        {
+            <div style="display:inline-block">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@crop_image_path" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Crops_name)</h5>
+                        <p class="card-text"> @Html.DisplayNameFor(model => model.Crops_price) : @Html.DisplayFor(modelItem => item.Crops_price)</p>
+                        <p class="card-text"> @Html.DisplayNameFor(model => model.Crops_quantity) : @Html.DisplayFor(modelItem => item.Crops_quantity)</p>
+
+                        <p class="card-text"> @Html.DisplayNameFor(model => model.Crops_description) : @Html.DisplayFor(modelItem => item.Crops_description)</p>
+
+
+                        <a asp-action="Delete" asp-controller="Crops" asp-route-id="@item.Crops_id" class="btn btn-danger">Delete</a>
+
+                    </div>
+                </div>
+            </div>
+
+            i++;
+        }
+    }
+ </div>

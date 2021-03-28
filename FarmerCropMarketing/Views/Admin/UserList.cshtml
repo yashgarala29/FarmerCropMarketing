@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FarmerCropMarketing.Models.Farmers>
+
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>UserList</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Farmers_email)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Farmers_address)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Farmers_email)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Farmers_address)
+            </td>
+
+            <td>
+                <a class="btn btn-danger"  asp-action="Delete" asp-route-id="@item.Farmers_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

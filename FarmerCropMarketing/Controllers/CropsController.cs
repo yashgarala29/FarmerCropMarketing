@@ -142,7 +142,7 @@ namespace FarmerCropMarketing.Controllers
             var crops = await _context.Crops.FindAsync(id);
             _context.Crops.Remove(crops);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("CropList", "Admin");
         }
 
         private bool CropsExists(int id)

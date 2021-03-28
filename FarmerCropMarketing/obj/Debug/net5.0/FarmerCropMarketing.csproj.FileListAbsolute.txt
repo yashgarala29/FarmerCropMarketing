@@ -210,3 +210,6 @@ E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\R
 E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\sellinmsp.cshtml.g.cs
 E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\SellCropInMSP.cshtml.g.cs
 E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Farmers\mymspsell.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Admin\CropList.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Admin\UserList.cshtml.g.cs
+E:\SEM 6\OOSE\project\FarmerCropMarketing\FarmerCropMarketing\obj\Debug\net5.0\Razor\Views\Admin\Delete.cshtml.g.cs
