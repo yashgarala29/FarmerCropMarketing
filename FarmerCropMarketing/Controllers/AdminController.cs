@@ -63,7 +63,7 @@ namespace FarmerCropMarketing.Controllers
 
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("UserList","Admin");
         }
         private bool FarmersExists(int id)
         {

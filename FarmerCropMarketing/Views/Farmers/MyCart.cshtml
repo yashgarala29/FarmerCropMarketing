@@ -1,42 +1,82 @@
-﻿@model IEnumerable<FarmerCropMarketing.Models.Cart>
+﻿@*@model IEnumerable<FarmerCropMarketing.Models.Cart>
+
+    @{
+        ViewData["Title"] = "MyCart";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h1>MyCart</h1>
+
+    <table class="table ">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Crops.Crops_name)
+                </th >
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Crops.Crops_price)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Crops.Crops_image)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+        var crop_image_path = "/CropImage/" + item.Crops.Crops_image;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crops.Crops_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crops.Crops_price)
+                </td>
+                <td>
+                    <img class="img-thumbnail" height="15%" width="15%" src="@crop_image_path" alt="Card image cap">
+                </td>
+                <td>
+
+                   <a class="btn btn-warning" asp-action="Delete" asp-controller="Cart" asp-route-id="@item.Cart_id">Remove Frome Cart</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+
+@model IEnumerable<FarmerCropMarketing.Models.Cart>
 
 @{
     ViewData["Title"] = "MyCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>MyCart</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Farmers)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Crops)
-            </th>
-            <th></th>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Farmers.Farmers_address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Crops.Crops_description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Cart_id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Cart_id">Details</a> |
-                <a asp-action="Delete" asp-controller="Cart" asp-route-id="@item.Cart_id">Delete</a>
-            </td>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>mdo</td>
         </tr>
-}
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>gfhfh</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>twitter</td>
+        </tr>
     </tbody>
 </table>
