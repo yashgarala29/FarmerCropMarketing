@@ -34,10 +34,10 @@
                 @if (User.IsInRole("Admin"))
                 {
                 <li class="nav-link text-left">
-                    <a class="" asp-area="" asp-controller="Role" asp-action="ListOfAllUser">Manage User</a>
+                    <a class="" asp-area="" asp-controller="admin" asp-action="UserList">Manage User</a>
                 </li>
                                     <li class="nav-link text-left">
-                                        <a class="" asp-area="" asp-controller="Role" asp-action="CreateRole">Manage Crope</a>
+                                        <a class="" asp-area="" asp-controller="Admin" asp-action="CropList">Manage Crope</a>
                                     </li>
 }
                                 @if (User.IsInRole("Government"))

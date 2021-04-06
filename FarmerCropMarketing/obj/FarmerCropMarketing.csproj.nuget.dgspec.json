@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj": {}
+    "F:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj": {}
   },
   "projects": {
-    "E:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj": {
+    "F:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj",
+        "projectUniqueName": "F:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj",
         "projectName": "FarmerCropMarketing",
-        "projectPath": "E:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "E:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\obj\\",
+        "projectPath": "F:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\FarmerCropMarketing.csproj",
+        "packagesPath": "C:\\Users\\91728\\.nuget\\packages\\",
+        "outputPath": "F:\\SEM 6\\OOSE\\project\\FarmerCropMarketing\\FarmerCropMarketing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\91728\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\91728\\.nuget\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -81,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

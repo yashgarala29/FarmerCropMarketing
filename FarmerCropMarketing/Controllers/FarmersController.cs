@@ -27,11 +27,15 @@ namespace FarmerCropMarketing.Controllers
         }
         public async Task<IActionResult> placeorder()
         {
-            var all_cart_carop = await _context.Cart.Include(x => x.Farmers).Include(x => x.Crops).Where(x => x.Farmers.Farmers_email == User.Identity.Name).ToListAsync();
+            var all_cart_carop = await _context.Cart.Include(x => x.Farmers).Include(x => x.Crops).Where(x =>x.Crops.itComplited== false && x.Farmers.Farmers_email == User.Identity.Name).ToListAsync();
             foreach(var i in all_cart_carop)
             {
 
                 var selleruser = await _context.Crops.Where(x => x.Crops_id == i.Crops_id).FirstOrDefaultAsync();
+                if(selleruser.itComplited==true)
+                {
+                    continue;
+                }
                 var newOrder = new Orders
                 {
                     delivery_date = DateTime.Now,
@@ -316,7 +320,7 @@ namespace FarmerCropMarketing.Controllers
 
         }
 
-        [Authorize(Roles = "Farmer")]
+        [Authorize(Roles = "Admin")]
         // GET: Farmers
         public async Task<IActionResult> Index()
         {
@@ -420,7 +424,7 @@ namespace FarmerCropMarketing.Controllers
         }
 
         // GET: Farmers/Delete/5
-        [Authorize(Roles = "Farmer")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -441,7 +445,7 @@ namespace FarmerCropMarketing.Controllers
         // POST: Farmers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Farmer")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var farmers = await _context.Farmers.FindAsync(id);
